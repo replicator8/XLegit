@@ -18,9 +18,9 @@ final class MainTabBarController: UITabBarController {
     
     private func generateTabBar() {
         viewControllers = [
-            generateVC(vc: ListViewController(), title: "List", image: UIImage(systemName: "circle.grid.3x3.fill")),
             generateVC(vc: HomeViewController(), title: "Home", image: UIImage(systemName: "house.fill")),
-            generateVC(vc: NFCViewController(), title: "Scanner", image: UIImage(systemName: "sheqelsign.square.fill")),
+            generateVC(vc: WardrobeViewController(), title: "Wardrobe", image: UIImage(systemName: "tshirt.fill")),
+            generateVC(vc: NFCViewController(), title: "Scan", image: UIImage(systemName: "sheqelsign.square.fill")),
             generateVC(vc: AccountViewController(), title: "Account", image: UIImage(systemName: "person.fill")),
             generateVC(vc: SettingsViewController(), title: "Settings", image: UIImage(systemName: "gear"))
         ]

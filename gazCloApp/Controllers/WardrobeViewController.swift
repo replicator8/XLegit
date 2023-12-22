@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ListViewController: UIViewController {
+final class WardrobeViewController: UIViewController {
     
     var label: UILabel = {
         var label = UILabel()

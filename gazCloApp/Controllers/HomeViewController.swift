@@ -12,7 +12,7 @@ final class HomeViewController: UIViewController {
     var label: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Information about events will be here..."
+        label.text = "Information about GAZ will be here..."
         label.textColor = .black
         label.font = .systemFont(ofSize: 20)
         

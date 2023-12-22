@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AccountViewController: UIViewController {
+final class AccountViewController: UIViewController, UITextFieldDelegate {
     
     var accountLabel: UILabel = {
         var label = UILabel()
@@ -24,14 +24,6 @@ final class AccountViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
-    }()
-    
-    var profileButton: UIButton = {
-        var button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(nil, action: #selector(buttonTapped), for: .touchUpInside)
-        
-        return button
     }()
     
     var midView: UIView = {
@@ -54,8 +46,10 @@ final class AccountViewController: UIViewController {
     var nameTextField: UITextField = {
         var textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = "John Doe"
+        textField.placeholder = "John Doe"
         textField.textColor = .black
+        textField.keyboardType = .default
+        textField.returnKeyType = .go
         
         return textField
     }()
@@ -64,6 +58,7 @@ final class AccountViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemGray
+        nameTextField.delegate = self
         
         addSubviews()
         setUpConstraints()
@@ -73,7 +68,6 @@ final class AccountViewController: UIViewController {
         view.addSubview(accountLabel)
         view.addSubview(profileImageView)
         view.addSubview(midView)
-        view.addSubview(profileButton)
         midView.addSubview(nameLabel)
         midView.addSubview(nameTextField)
     }
@@ -87,12 +81,7 @@ final class AccountViewController: UIViewController {
             
             profileImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 130),
             profileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            
-            profileButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 130),
-            profileButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
-            profileButton.widthAnchor.constraint(equalToConstant: 120),
-            profileButton.heightAnchor.constraint(equalToConstant: 120),
-            
+                
             midView.widthAnchor.constraint(equalToConstant: 320),
             midView.heightAnchor.constraint(equalToConstant: 56),
             midView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
@@ -106,9 +95,10 @@ final class AccountViewController: UIViewController {
         ])
     }
     
-    @objc private func buttonTapped() {
-        self.view.endEditing(true)
-        self.midView.endEditing(true)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        print(textField.text ?? "")
+        return true
     }
-
+    
 }
